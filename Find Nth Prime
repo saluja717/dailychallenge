@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll unsigned long int
+
+ll nth_prime(ll n)
+{
+    if(n==1)
+    {
+        return 2;
+    }
+    vector<ll>a;
+    for(ll i=0;i<=150000;i++)
+    {
+        a.push_back(1);
+    }
+   a[0]=a[1]=0;
+   for(ll i=2;i*i<=150000;i++)
+   {
+       if(a[i]==1)
+       {
+           for(ll j=i*i;j<=150000;j+=i)
+           {
+               a[j]=0;
+           }
+       }
+   }
+   vector<ll>ans;
+   for(ll i=1;i<=a.size();i++)
+   {
+       if(a[i]==1)
+       {
+           ans.push_back(i);
+       }
+   }
+   
+   return ans[n-1];
+    
+}
+
+int main() {
+    ll n;
+    cin>>n;
+    cout<<nth_prime(n);
+	return 0;
+}
